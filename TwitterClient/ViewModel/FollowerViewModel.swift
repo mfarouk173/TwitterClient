@@ -18,7 +18,7 @@ class FollowerViewModel {
         self.credential = credential
     }
     
-    func set() {
+    func getFollowers(completion:@escaping (_ users: [User]?)->()) {
         let requestClosure = {[weak self] (endpoint: Endpoint<TwitterTarget>, done: MoyaProvider.RequestResultClosure) in
             do {
                 var request = try endpoint.urlRequest()
@@ -48,8 +48,10 @@ class FollowerViewModel {
                 let model = try? jsonDecoder.decode(TwitterResponse.self, from: response.data)
                 print(model)
                 print(try? response.mapJSON())
+                completion(model?.users)
             case .failure(let error):
                 print(error)
+                completion(nil)
             }
         })
     }

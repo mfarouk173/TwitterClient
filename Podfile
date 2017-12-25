@@ -10,4 +10,5 @@ target 'TwitterClient' do
   pod 'Moya'
   pod 'RealmSwift'
   pod 'NVActivityIndicatorView'
+  pod 'Kingfisher', '~> 4.0'
 end

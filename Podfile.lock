@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.6.0)
+  - Kingfisher (4.5.0)
   - Moya (10.0.1):
     - Moya/Core (= 10.0.1)
   - Moya/Core (10.0.1):
@@ -17,6 +18,7 @@ PODS:
   - Result (3.2.4)
 
 DEPENDENCIES:
+  - Kingfisher (~> 4.0)
   - Moya
   - NVActivityIndicatorView
   - OAuthSwift (~> 1.2.0)
@@ -24,6 +26,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
   Moya: 9e621707ff754eeb51ff3ec51a3d54e517c0733a
   NVActivityIndicatorView: dc4726052dc24e89fa8576d43acf9e96f61d49db
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
@@ -31,6 +34,6 @@ SPEC CHECKSUMS:
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 
-PODFILE CHECKSUM: 3c09d63c5f734bfe1e10898a6cf7b1def35fc107
+PODFILE CHECKSUM: 4c9395508c60a9f3af048584ec9ebfb929aa04b6
 
 COCOAPODS: 1.3.1

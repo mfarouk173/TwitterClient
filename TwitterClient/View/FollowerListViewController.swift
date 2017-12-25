@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class FollowerListViewController: UIViewController, Instantiatable {
     static var viewControllerId: ViewContollerId {
@@ -16,14 +17,24 @@ final class FollowerListViewController: UIViewController, Instantiatable {
     var viewModel: FollowerViewModel!
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var users: [User]?
+    var users: [User]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        collectionView.rx.items()
         collectionView.delegate = self
         collectionView.dataSource = self
-        viewModel.set()
+        viewModel.getFollowers(completion: {[weak self] users in
+            self?.users = users
+        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
 }
 
@@ -36,7 +47,14 @@ extension FollowerListViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FollowerCollectionCell
+        if let user = users?[indexPath.row] {
+            cell.bioLabel.text = user.bio
+            cell.handleLabel.text = "@\(user.handle)"
+            cell.nameLabel.text = user.name
+            cell.profileImage.kf.indicatorType = .activity
+            cell.profileImage.kf.setImage(with: URL(string:user.profileImageUrl))
+        }
         return cell
     }
 
