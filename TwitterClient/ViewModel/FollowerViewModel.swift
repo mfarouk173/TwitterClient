@@ -8,7 +8,6 @@
 
 import Foundation
 import Moya
-import RxSwift
 import OAuthSwift
 
 class FollowerViewModel {
@@ -42,17 +41,16 @@ class FollowerViewModel {
         }
         provider = MoyaProvider<TwitterTarget>(requestClosure: requestClosure)
         
-        
-        provider?.rx.request(TwitterTarget.followers).subscribe { event in
-            switch event {
+        provider?.request(TwitterTarget.followers, completion: { result in
+            switch result {
             case .success(let response):
                 let jsonDecoder = JSONDecoder()
                 let model = try? jsonDecoder.decode(TwitterResponse.self, from: response.data)
                 print(model)
                 print(try? response.mapJSON())
-            case .error(let error):
+            case .failure(let error):
                 print(error)
             }
-        }
+        })
     }
 }

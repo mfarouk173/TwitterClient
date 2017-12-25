@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import RxCocoa
-
 
 final class FollowerListViewController: UIViewController, Instantiatable {
     static var viewControllerId: ViewContollerId {

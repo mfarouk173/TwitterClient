@@ -7,10 +7,7 @@ target 'TwitterClient' do
 
   # Pods for TwitterClient
   pod 'OAuthSwift', '~> 1.2.0'
-  pod 'RxSwift',    '~> 4.0'
-  pod 'RxCocoa',    '~> 4.0'
-  pod 'Moya/RxSwift'
+  pod 'Moya'
   pod 'RealmSwift'
   pod 'NVActivityIndicatorView'
-
 end
