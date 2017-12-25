@@ -20,6 +20,8 @@ final class LoginViewController: UIViewController, Instantiatable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+    @IBAction func loginWithTwitterTapped(_ sender: Any) {
         viewModel.authenticate()
     }
     
