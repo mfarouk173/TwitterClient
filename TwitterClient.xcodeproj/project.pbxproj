@@ -26,6 +26,7 @@
 		6E6FC26B1FF08ABA004A599B /* FollowerListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC26A1FF08ABA004A599B /* FollowerListCoordinator.swift */; };
 		6E6FC26D1FF08AF3004A599B /* FollowerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC26C1FF08AF3004A599B /* FollowerViewModel.swift */; };
 		6E6FC26F1FF0AA95004A599B /* FollowerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC26E1FF0AA95004A599B /* FollowerCollectionCell.swift */; };
+		6E6FC2711FF0B3B1004A599B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC2701FF0B3B1004A599B /* Status.swift */; };
 		CA9C95218F5C76B218C2752B /* Pods_TwitterClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5ED37FA29681274C5559B0 /* Pods_TwitterClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		6E6FC26A1FF08ABA004A599B /* FollowerListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListCoordinator.swift; sourceTree = "<group>"; };
 		6E6FC26C1FF08AF3004A599B /* FollowerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewModel.swift; sourceTree = "<group>"; };
 		6E6FC26E1FF0AA95004A599B /* FollowerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionCell.swift; sourceTree = "<group>"; };
+		6E6FC2701FF0B3B1004A599B /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		AFC0D1F2695475EC56D177CB /* Pods-TwitterClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClient/Pods-TwitterClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			children = (
 				6E6FC24D1FEF0020004A599B /* TwitterResponse.swift */,
 				6E6FC25A1FEF8460004A599B /* User.swift */,
+				6E6FC2701FF0B3B1004A599B /* Status.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TwitterClient/Pods-TwitterClient-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EZSwiftExtensions/EZSwiftExtensions.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -313,10 +317,12 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RevealingSplashView/RevealingSplashView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EZSwiftExtensions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -324,6 +330,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RevealingSplashView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -340,6 +347,7 @@
 				6E6FC26B1FF08ABA004A599B /* FollowerListCoordinator.swift in Sources */,
 				6E6FC25F1FF06969004A599B /* Coordinator.swift in Sources */,
 				6E6FC2591FEF0971004A599B /* Constants.swift in Sources */,
+				6E6FC2711FF0B3B1004A599B /* Status.swift in Sources */,
 				6E6FC2651FF06DFB004A599B /* LoginViewModel.swift in Sources */,
 				6E6FC2631FF06A23004A599B /* AppCoordinator.swift in Sources */,
 				6E6FC2531FEF05B7004A599B /* TwitterTarget.swift in Sources */,

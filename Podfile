@@ -11,4 +11,6 @@ target 'TwitterClient' do
   pod 'RealmSwift'
   pod 'NVActivityIndicatorView'
   pod 'Kingfisher', '~> 4.0'
+  pod 'RevealingSplashView'
+  pod 'EZSwiftExtensions'
 end

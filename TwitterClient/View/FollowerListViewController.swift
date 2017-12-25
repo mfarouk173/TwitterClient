@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import EZSwiftExtensions
 
 final class FollowerListViewController: UIViewController, Instantiatable {
     static var viewControllerId: ViewContollerId {
@@ -52,6 +53,7 @@ extension FollowerListViewController : UICollectionViewDataSource {
             cell.bioLabel.text = user.bio
             cell.handleLabel.text = "@\(user.handle)"
             cell.nameLabel.text = user.name
+            cell.profileImage.roundSquareImage()
             cell.profileImage.kf.indicatorType = .activity
             cell.profileImage.kf.setImage(with: URL(string:user.profileImageUrl))
         }
