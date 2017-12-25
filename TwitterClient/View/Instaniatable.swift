@@ -9,12 +9,13 @@
 import UIKit
 
 protocol Instantiatable {
-    static func instantiate(viewController id: ViewContollerId) -> Self?
+    static var viewControllerId:ViewContollerId { get }
+    static func instantiate() -> Self?
 }
 
 extension Instantiatable where Self: UIViewController {
-    static func instantiate(viewController id: ViewContollerId) -> Self? {
+    static func instantiate() -> Self? {
         let storyboard = UIStoryboard(name: Constants.StoryboardName.main, bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: id.rawValue) as? Self
+        return storyboard.instantiateViewController(withIdentifier: Self.viewControllerId.rawValue) as? Self
     }
 }

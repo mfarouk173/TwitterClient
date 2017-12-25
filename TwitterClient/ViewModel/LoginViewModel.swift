@@ -8,12 +8,12 @@
 
 import Foundation
 import OAuthSwift
-import Moya
-import RxSwift
 
 class LoginViewModel {
     var oauthswift: OAuth1Swift?
     var credential: OAuthSwiftCredential?
+    var coordinatorDelegate: LoginCoordinatorDelegate?
+    
     func authenticate(){
         DispatchQueue.global(qos: .background).async {
             self.oauthswift = OAuth1Swift(
@@ -24,7 +24,7 @@ class LoginViewModel {
                 accessTokenUrl:  Constants.Twitter.accessTokenUrl
             )
             // authorize
-            let _ = self.oauthswift?.authorize(
+            _ = self.oauthswift?.authorize(
                 withCallbackURL: Constants.Twitter.callbackUrl,
                 success: { [weak self] credential, response, parameters in
                     print(credential.oauthToken)
@@ -33,43 +33,12 @@ class LoginViewModel {
                     self?.credential = credential
                     
                     // Do your request
-                    
-                    let requestClosure = { (endpoint: Endpoint<TwitterTarget>, done: MoyaProvider.RequestResultClosure) in
-                        do {
-                            var request = try endpoint.urlRequest()
-                            // Modify the request however you like.
-                            let headers = request.allHTTPHeaderFields ?? [:]
-                            var requestHeaders = credential.makeHeaders(request.url!, method: OAuthSwiftHTTPRequest.Method(rawValue: request.httpMethod!)!, parameters: [:])
-                            headers.forEach({ key, value in
-                                requestHeaders[key] = value
-                            })
-                            request.allHTTPHeaderFields = requestHeaders
-                            
-                            done(.success(request))
-                        } catch {
-                            done(.failure(MoyaError.underlying(error, nil)))
-                        }
-                        
-                    }
-                    let provider = MoyaProvider<TwitterTarget>(requestClosure: requestClosure)
-                    
-                    
-                    provider.rx.request(TwitterTarget.followers).subscribe { event in
-                        switch event {
-                        case .success(let response):
-                            let jsonDecoder = JSONDecoder()
-                            let model = try? jsonDecoder.decode(TwitterResponse.self, from: response.data)
-                            print(model)
-                            print(try? response.mapJSON())
-                        case .error(let error):
-                            print(error)
-                        }
-                    }
-                    
+                    self?.coordinatorDelegate?.loginDidSuccess(credential: credential)
                 },
-                failure: { error in
+                failure: {[weak self] error in
                     print(error.localizedDescription)
-            }
+                    self?.coordinatorDelegate?.loginDidFail(error: error)
+                }
             )
         }
     }

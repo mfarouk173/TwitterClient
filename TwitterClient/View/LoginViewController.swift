@@ -9,6 +9,9 @@
 import UIKit
 
 final class LoginViewController: UIViewController, Instantiatable {
+    static var viewControllerId: ViewContollerId {
+        return .loginViewController
+    }
     
     var viewModel: LoginViewModel!
     
@@ -21,6 +24,7 @@ final class LoginViewController: UIViewController, Instantiatable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     @IBAction func loginWithTwitterTapped(_ sender: Any) {
         viewModel.authenticate()
     }
