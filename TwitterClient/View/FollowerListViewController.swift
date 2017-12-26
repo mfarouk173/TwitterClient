@@ -26,12 +26,15 @@ final class FollowerListViewController: UIViewController, Instantiatable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        collectionView.rx.items()
+
         collectionView.delegate = self
         collectionView.dataSource = self
         viewModel.getFollowers(completion: {[weak self] users in
             self?.users = users
         })
+        if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,13 +56,12 @@ extension FollowerListViewController : UICollectionViewDataSource {
             cell.bioLabel.text = user.bio
             cell.handleLabel.text = "@\(user.handle)"
             cell.nameLabel.text = user.name
-            cell.profileImage.roundSquareImage()
             cell.profileImage.kf.indicatorType = .activity
             cell.profileImage.kf.setImage(with: URL(string:user.profileImageUrl))
+            cell.cellWidth.constant = ez.screenWidth - 50
         }
         return cell
     }
-
 }
 extension FollowerListViewController: UICollectionViewDelegate {
     

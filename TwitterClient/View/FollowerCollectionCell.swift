@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class FollowerCollectionCell: UICollectionViewCell {
     @IBOutlet weak var profileImage: UIImageView!
@@ -14,4 +15,10 @@ class FollowerCollectionCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var cellWidth: NSLayoutConstraint!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        profileImage.roundSquareImage()
+    }
 }
