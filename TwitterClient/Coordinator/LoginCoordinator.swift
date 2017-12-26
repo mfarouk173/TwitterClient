@@ -7,14 +7,32 @@
 //
 
 import Foundation
+import OAuthSwift
 
+protocol LoginCoordinatorDelegate {
+    func loginDidSuccess(credential:OAuthSwiftCredential)
+    func loginDidFail(error:Error)
+}
 final class LoginCoordinator: Coordinator {
     override func start() {
         let viewModel = LoginViewModel()
-        guard let viewController = LoginViewController.instantiate(viewController: .loginViewController) else {
+        viewModel.coordinatorDelegate = self
+        guard let viewController = LoginViewController.instantiate() else {
             return
         }
         viewController.viewModel = viewModel
         navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension LoginCoordinator: LoginCoordinatorDelegate {
+    func loginDidSuccess(credential:OAuthSwiftCredential) {
+        let coordinator = FollowerListCoordinator(navigationController: navigationController)
+        coordinator.credential = credential
+        coordinator.start()
+    }
+    
+    func loginDidFail(error:Error) {
+        
     }
 }

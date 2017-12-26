@@ -15,7 +15,7 @@ class User: Codable {
     let handle:String
     let bio:String
     let backgroundImageUrl:String?
-//    tweets status
+//    let tweets: [Status]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,6 +24,7 @@ class User: Codable {
         case handle = "screen_name"
         case bio = "description"
         case backgroundImageUrl = "profile_background_image_url_https"
+//        case tweets = "status"
     }
     
     init(id:Int, profileImageUrl:String, name:String, handle:String, bio:String, backgroundImageUrl:String?){

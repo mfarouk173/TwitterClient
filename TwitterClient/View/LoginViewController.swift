@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RevealingSplashView
 
 final class LoginViewController: UIViewController, Instantiatable {
+    static var viewControllerId: ViewContollerId {
+        return .loginViewController
+    }
     
     var viewModel: LoginViewModel!
     
@@ -16,11 +20,24 @@ final class LoginViewController: UIViewController, Instantiatable {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // create an instance and retain it
+        //Initialize a revealing Splash with with the iconImage, the initial size and the background color
+        let revealingSplashView = RevealingSplashView(iconImage: #imageLiteral(resourceName: "Twitter_Logo_WhiteOnImage"),iconInitialSize: CGSize(width: 70, height: 70), backgroundColor: UIColor(red:0.11, green:0.56, blue:0.95, alpha:1.0))
+        
+        //Adds the revealing splash view as a sub view
+        self.view.addSubview(revealingSplashView)
+        
+        //Starts animation
+        revealingSplashView.delay = 1.0
+        revealingSplashView.startAnimation(){
+            print("Completed")
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
+    
     @IBAction func loginWithTwitterTapped(_ sender: Any) {
         viewModel.authenticate()
     }
