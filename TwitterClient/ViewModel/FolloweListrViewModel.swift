@@ -1,5 +1,5 @@
 //
-//  FollowerViewModel.swift
+//  FollowerListViewModel.swift
 //  TwitterClient
 //
 //  Created by Mohamed Farouk on 12/25/17.
@@ -10,10 +10,11 @@ import Foundation
 import Moya
 import OAuthSwift
 
-class FollowerViewModel {
+class FollowerListViewModel {
     var provider: MoyaProvider<TwitterTarget>?
     var credential: OAuthSwiftCredential
-    
+    var coordinatorDelegate: FollowerListCoordinatorDelegate?
+
     init(credential: OAuthSwiftCredential) {
         self.credential = credential
     }
@@ -57,4 +58,11 @@ class FollowerViewModel {
             }
         })
     }
+
+    func showFollowerDetails(follower: User) {
+        coordinatorDelegate?.showFollowerDetails(follower: follower)
+    }
+//    func getTweets(completion:@escaping (_ tweets: [Tweet]?)->()) {
+//
+//    }
 }

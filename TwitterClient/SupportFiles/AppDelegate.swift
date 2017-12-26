@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         NVActivityIndicatorView.DEFAULT_TYPE = .ballRotateChase
-
+        UINavigationBar.appearance().tintColor = UIColor.twitterBlue
+        
         return true
     }
     

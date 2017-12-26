@@ -15,10 +15,10 @@ final class FollowerListViewController: UIViewController, Instantiatable {
         return .followerListViewController
     }
     
-    var viewModel: FollowerViewModel!
+    var viewModel: FollowerListViewModel!
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var users: [User]? {
+    var followers: [User]? {
         didSet {
             collectionView.reloadData()
         }
@@ -30,7 +30,7 @@ final class FollowerListViewController: UIViewController, Instantiatable {
         collectionView.delegate = self
         collectionView.dataSource = self
         viewModel.getFollowers(completion: {[weak self] users in
-            self?.users = users
+            self?.followers = users
         })
         if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -39,12 +39,13 @@ final class FollowerListViewController: UIViewController, Instantiatable {
     
     override func viewDidAppear(_ animated: Bool) {
         collectionView.reloadData()
+        title = ""
     }
 }
 
 extension FollowerListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let users = users {
+        if let users = followers {
             return users.count
         }
         return 0
@@ -52,7 +53,7 @@ extension FollowerListViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FollowerCollectionCell
-        if let user = users?[indexPath.row] {
+        if let user = followers?[indexPath.row] {
             cell.bioLabel.text = user.bio
             cell.handleLabel.text = "@\(user.handle)"
             cell.nameLabel.text = user.name
@@ -64,5 +65,9 @@ extension FollowerListViewController : UICollectionViewDataSource {
     }
 }
 extension FollowerListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let followers = followers, followers.count > indexPath.row {
+            viewModel.showFollowerDetails(follower: followers[indexPath.row])
+        }
+    }
 }

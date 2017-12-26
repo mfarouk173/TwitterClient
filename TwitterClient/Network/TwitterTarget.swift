@@ -11,6 +11,7 @@ import Moya
 
 enum TwitterTarget{
     case followers
+    case tweets(handle:String, count:Int)
 }
 
 extension TwitterTarget: TargetType {
@@ -22,6 +23,8 @@ extension TwitterTarget: TargetType {
         switch self {
         case .followers:
             return "/followers/list.json"
+        case .tweets(let handle, let count):
+            return "/statuses/user_timeline.json?screen_name=\(handle)&count=\(count)"
         }
     }
     

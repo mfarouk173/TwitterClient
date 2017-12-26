@@ -11,4 +11,5 @@ import Foundation
 enum ViewContollerId: String {
     case loginViewController
     case followerListViewController
+    case followerDetailsViewController
 }
