@@ -10,12 +10,11 @@ import Foundation
 
 class User: Codable {
     let id:Int
-    let profileImageUrl:String
+    let profileImageUrl:String?
     let name:String
     let handle:String
-    let bio:String
+    let bio:String?
     let backgroundImageUrl:String?
-//    let tweets: [Status]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -24,10 +23,9 @@ class User: Codable {
         case handle = "screen_name"
         case bio = "description"
         case backgroundImageUrl = "profile_background_image_url_https"
-//        case tweets = "status"
     }
     
-    init(id:Int, profileImageUrl:String, name:String, handle:String, bio:String, backgroundImageUrl:String?){
+    init(id:Int, profileImageUrl:String?, name:String, handle:String, bio:String?, backgroundImageUrl:String?){
         self.id = id
         self.profileImageUrl = profileImageUrl
         self.name = name

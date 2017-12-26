@@ -16,7 +16,7 @@ protocol FollowerListCoordinatorDelegate {
 final class FollowerListCoordinator: Coordinator {
     var credential: OAuthSwiftCredential!
     override func start() {
-        let viewModel = FollowerListViewModel(credential: credential)
+        let viewModel = FollowerViewModel(credential: credential)
         viewModel.coordinatorDelegate = self
         guard let viewController = FollowerListViewController.instantiate() else {
             return

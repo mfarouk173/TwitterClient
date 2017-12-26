@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum TwitterTarget{
-    case followers
+    case followers(count:Int)
     case tweets(handle:String, count:Int)
 }
 
@@ -23,8 +23,8 @@ extension TwitterTarget: TargetType {
         switch self {
         case .followers:
             return "/followers/list.json"
-        case .tweets(let handle, let count):
-            return "/statuses/user_timeline.json?screen_name=\(handle)&count=\(count)"
+        case .tweets:
+            return "/statuses/user_timeline.json"
         }
     }
     
@@ -41,8 +41,10 @@ extension TwitterTarget: TargetType {
     
     var task: Task {
         switch self {
-        default:
-            return .requestPlain
+        case .followers(let count):
+            return .requestParameters(parameters: ["count":count], encoding: URLEncoding.default)
+        case .tweets(let handle, let count):
+            return .requestParameters(parameters: ["screen_name":handle,"count":count], encoding: URLEncoding.queryString)
         }
     }
     

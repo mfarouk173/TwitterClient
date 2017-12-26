@@ -15,7 +15,7 @@ final class FollowerDetailsViewController: UIViewController, Instantiatable {
         return .followerDetailsViewController
     }
     
-    var viewModel: FollowerDetailsViewModel!
+    var viewModel: FollowerViewModel!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -23,14 +23,21 @@ final class FollowerDetailsViewController: UIViewController, Instantiatable {
     @IBOutlet weak var handleLabel: UILabel!
       @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var tweetsTable: UITableView!
+    
     lazy var follower: User? = viewModel.follower
-    var tweets: [String]?
+    var tweets: [Tweet]? {
+        didSet {
+            tweetsTable.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tweetsTable.delegate = self
         tweetsTable.dataSource = self
+        tweetsTable.estimatedRowHeight = 200
+//        tweetsTable.auto
         setupUI()
     }
     
@@ -54,6 +61,10 @@ final class FollowerDetailsViewController: UIViewController, Instantiatable {
             self.backgroundImageView.kf.indicatorType = .activity
             self.backgroundImageView.kf.setImage(with: url)
         }
+        
+        viewModel.getTweets { [weak self] tweets in
+            self?.tweets = tweets
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,17 +80,27 @@ final class FollowerDetailsViewController: UIViewController, Instantiatable {
 
 extension FollowerDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tweets = tweets {
+            return tweets.count
+        }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell") as? TweetTableCell
+        
+        cell?.nameLabel.text = follower?.name
+        cell?.handleLabel.text = follower?.handle
+        if let profileImageUrl = follower?.profileImageUrl, let url = URL(string: profileImageUrl) {
+            cell?.profileImageView.kf.indicatorType = .activity
+            cell?.profileImageView.kf.setImage(with: url)
+        }
+        if let tweet = tweets?[indexPath.row] {
+            cell?.tweetTextLabel.text = tweet.text
+        }
         return cell!
     }
-    
-    
 }
-
 
 extension FollowerDetailsViewController: UITableViewDelegate {
     

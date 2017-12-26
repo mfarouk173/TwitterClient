@@ -14,7 +14,7 @@ final class FollowerDetailsCoordinator: Coordinator {
     var follower:User!
     
     override func start() {
-        let viewModel = FollowerDetailsViewModel(credential: credential,follower: follower)
+        let viewModel = FollowerViewModel(credential: credential,follower: follower)
         guard let viewController = FollowerDetailsViewController.instantiate() else {
             return
         }

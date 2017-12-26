@@ -10,18 +10,10 @@ import Foundation
 import Moya
 import OAuthSwift
 
-class FollowerDetailsViewModel {
-    private var provider: MoyaProvider<TwitterTarget>?
-    private var credential: OAuthSwiftCredential
-    var follower:User?
-    
-    init(credential: OAuthSwiftCredential, follower:User) {
-        self.credential = credential
-        self.follower = follower
-    }
-    
-    func getTweets(completion:@escaping (_ tweets: [Tweet]?)->()) {
-        
-    }
-}
+//class FollowerDetailsViewModel {
+//    private var provider: MoyaProvider<TwitterTarget>?
+//    private var credential: OAuthSwiftCredential
+//    
+//    
+//}
 

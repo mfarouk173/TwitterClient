@@ -15,7 +15,7 @@ final class FollowerListViewController: UIViewController, Instantiatable {
         return .followerListViewController
     }
     
-    var viewModel: FollowerListViewModel!
+    var viewModel: FollowerViewModel!
 
     @IBOutlet weak var collectionView: UICollectionView!
     var followers: [User]? {
@@ -58,7 +58,9 @@ extension FollowerListViewController : UICollectionViewDataSource {
             cell.handleLabel.text = "@\(user.handle)"
             cell.nameLabel.text = user.name
             cell.profileImage.kf.indicatorType = .activity
-            cell.profileImage.kf.setImage(with: URL(string:user.profileImageUrl))
+            if let profileImage = user.profileImageUrl {
+                cell.profileImage.kf.setImage(with: URL(string:profileImage))
+            }
             cell.cellWidth.constant = ez.screenWidth - 50
         }
         return cell
