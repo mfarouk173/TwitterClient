@@ -18,7 +18,7 @@ final class FollowerListViewController: UIViewController, Instantiatable {
     var viewModel: FollowerViewModel!
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var users: [User]? {
+    var followers: [User]? {
         didSet {
             collectionView.reloadData()
         }
@@ -30,7 +30,7 @@ final class FollowerListViewController: UIViewController, Instantiatable {
         collectionView.delegate = self
         collectionView.dataSource = self
         viewModel.getFollowers(completion: {[weak self] users in
-            self?.users = users
+            self?.followers = users
         })
         if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -39,12 +39,13 @@ final class FollowerListViewController: UIViewController, Instantiatable {
     
     override func viewDidAppear(_ animated: Bool) {
         collectionView.reloadData()
+        title = ""
     }
 }
 
 extension FollowerListViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let users = users {
+        if let users = followers {
             return users.count
         }
         return 0
@@ -52,17 +53,23 @@ extension FollowerListViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FollowerCollectionCell
-        if let user = users?[indexPath.row] {
+        if let user = followers?[indexPath.row] {
             cell.bioLabel.text = user.bio
             cell.handleLabel.text = "@\(user.handle)"
             cell.nameLabel.text = user.name
             cell.profileImage.kf.indicatorType = .activity
-            cell.profileImage.kf.setImage(with: URL(string:user.profileImageUrl))
+            if let profileImage = user.profileImageUrl {
+                cell.profileImage.kf.setImage(with: URL(string:profileImage))
+            }
             cell.cellWidth.constant = ez.screenWidth - 50
         }
         return cell
     }
 }
 extension FollowerListViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let followers = followers, followers.count > indexPath.row {
+            viewModel.showFollowerDetails(follower: followers[indexPath.row])
+        }
+    }
 }

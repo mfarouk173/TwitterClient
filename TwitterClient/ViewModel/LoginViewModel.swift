@@ -15,6 +15,7 @@ class LoginViewModel {
     var coordinatorDelegate: LoginCoordinatorDelegate?
     
     func authenticate(){
+        UIHelpers.showLoader()
         DispatchQueue.global(qos: .background).async {
             self.oauthswift = OAuth1Swift(
                 consumerKey:    Constants.Twitter.consumerKey,
@@ -32,11 +33,12 @@ class LoginViewModel {
                     
                     self?.credential = credential
                     
-                    // Do your request
+                    UIHelpers.hideLoader()
                     self?.coordinatorDelegate?.loginDidSuccess(credential: credential)
                 },
                 failure: {[weak self] error in
                     print(error.localizedDescription)
+                    UIHelpers.hideLoader()
                     self?.coordinatorDelegate?.loginDidFail(error: error)
                 }
             )

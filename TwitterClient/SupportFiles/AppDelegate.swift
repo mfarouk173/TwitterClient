@@ -8,6 +8,7 @@
 
 import UIKit
 import OAuthSwift
+import NVActivityIndicatorView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator.start()
         
         window?.makeKeyAndVisible()
+        
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballRotateChase
+        UINavigationBar.appearance().tintColor = UIColor.twitterBlue
         
         return true
     }
