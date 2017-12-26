@@ -41,7 +41,9 @@ class FollowerViewModel {
         }
         provider = MoyaProvider<TwitterTarget>(requestClosure: requestClosure)
         
+        UIHelpers.showLoader()
         provider?.request(TwitterTarget.followers, completion: { result in
+            UIHelpers.hideLoader()
             switch result {
             case .success(let response):
                 let jsonDecoder = JSONDecoder()

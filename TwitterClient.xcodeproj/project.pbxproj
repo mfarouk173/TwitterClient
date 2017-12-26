@@ -27,6 +27,7 @@
 		6E6FC26D1FF08AF3004A599B /* FollowerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC26C1FF08AF3004A599B /* FollowerViewModel.swift */; };
 		6E6FC26F1FF0AA95004A599B /* FollowerCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC26E1FF0AA95004A599B /* FollowerCollectionCell.swift */; };
 		6E6FC2711FF0B3B1004A599B /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6FC2701FF0B3B1004A599B /* Status.swift */; };
+		6E91B6DF1FF1D9C900E463D6 /* UIHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91B6DE1FF1D9C900E463D6 /* UIHelpers.swift */; };
 		CA9C95218F5C76B218C2752B /* Pods_TwitterClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5ED37FA29681274C5559B0 /* Pods_TwitterClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		6E6FC26C1FF08AF3004A599B /* FollowerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewModel.swift; sourceTree = "<group>"; };
 		6E6FC26E1FF0AA95004A599B /* FollowerCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerCollectionCell.swift; sourceTree = "<group>"; };
 		6E6FC2701FF0B3B1004A599B /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		6E91B6DE1FF1D9C900E463D6 /* UIHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelpers.swift; sourceTree = "<group>"; };
 		AFC0D1F2695475EC56D177CB /* Pods-TwitterClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwitterClient/Pods-TwitterClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 		6E6FC2561FEF0909004A599B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				6E91B6DE1FF1D9C900E463D6 /* UIHelpers.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				6E6FC26B1FF08ABA004A599B /* FollowerListCoordinator.swift in Sources */,
 				6E6FC25F1FF06969004A599B /* Coordinator.swift in Sources */,
 				6E6FC2591FEF0971004A599B /* Constants.swift in Sources */,
+				6E91B6DF1FF1D9C900E463D6 /* UIHelpers.swift in Sources */,
 				6E6FC2711FF0B3B1004A599B /* Status.swift in Sources */,
 				6E6FC2651FF06DFB004A599B /* LoginViewModel.swift in Sources */,
 				6E6FC2631FF06A23004A599B /* AppCoordinator.swift in Sources */,

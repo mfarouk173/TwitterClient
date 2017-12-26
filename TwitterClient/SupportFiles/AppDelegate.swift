@@ -8,6 +8,7 @@
 
 import UIKit
 import OAuthSwift
+import NVActivityIndicatorView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballRotateChase
+
         return true
     }
     
